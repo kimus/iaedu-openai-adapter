@@ -1,6 +1,7 @@
 services:
   iaedu-openai-adapter:
     build: .
+    # image: kimus/iaedu-openai-adapter:latest
     ports:
       - "3067:3067"
     env_file:
