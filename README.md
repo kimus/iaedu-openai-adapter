@@ -1,6 +1,6 @@
 # iaedu-openai-adapter
 
-OpenAI-compatible FastAPI proxy for IAedu agent streams.
+OpenAI-compatible proxy adapter for IAedu agent streams.
 
 Tested with [Pi](https://pi.dev).
 
@@ -15,20 +15,20 @@ Create a `models.json` file:
 ```json
 [
   {
-    "name": "Opus-4.7-AIedu",
+    "name": "Opus-4.7-IAedu",
     "description": "Claude Opus 4.7",
     "agent_id": "your-agent-id",
     "channel_id": "your-channel-id",
     "api_key_iaedu": "sk-usr-your-iaedu-api-key",
-    "api_key_local": "aiedu"
+    "api_key_local": "iaedu"
   },
   {
-    "name": "GPT-5.5-AIedu",
+    "name": "GPT-5.5-IAedu",
     "description": "ChatGPT 5.5",
     "agent_id": "your-agent-id",
     "channel_id": "your-channel-id",
     "api_key_iaedu": "sk-usr-your-iaedu-api-key",
-    "api_key_local": "aiedu"
+    "api_key_local": "iaedu"
   }
 ]
 ```
@@ -101,7 +101,7 @@ docker run --rm \
 If you do not want to mount a separate file, you can put the model catalog directly in `.env`:
 
 ```env
-MODELS_CONFIG='[{"name":"example","description":"Example model","agent_id":"your-agent-id","channel_id":"your-channel-id","api_key_iaedu":"sk-usr-your-iaedu-api-key","api_key_local":"aiedu"}]'
+MODELS_CONFIG='[{"name":"example","description":"Example model","agent_id":"your-agent-id","channel_id":"your-channel-id","api_key_iaedu":"sk-usr-your-iaedu-api-key","api_key_local":"iaedu"}]'
 PORT=3067
 ```
 
