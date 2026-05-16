@@ -17,7 +17,9 @@ dependencies = [
 iaedu-openai-adapter = "iaedu_openai_adapter.proxy:main"
 
 [dependency-groups]
-dev = []
+dev = [
+    "pytest>=8.0.0",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/iaedu_openai_adapter"]

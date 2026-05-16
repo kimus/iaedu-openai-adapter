@@ -42,6 +42,16 @@ from .utils.logger import log
 app = FastAPI(title="IAedu → OpenAI Proxy")
 
 
+@app.exception_handler(HTTPException)
+async def openai_http_exception_handler(_request: Request, exc: HTTPException):
+    if isinstance(exc.detail, dict) and "error" in exc.detail:
+        return JSONResponse(status_code=exc.status_code, content=exc.detail)
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail},
+    )
+
+
 @app.get("/health")
 async def health():
     return {
