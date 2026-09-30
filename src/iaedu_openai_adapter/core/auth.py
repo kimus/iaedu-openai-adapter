@@ -24,10 +24,10 @@ def authenticate_for_listing(authorization: Optional[str]) -> list[dict]:
             "authentication_required",
             "missing_api_key",
         )
-    model = LOCAL_KEY_INDEX.get(key)
-    if not model:
+    models = LOCAL_KEY_INDEX.get(key)
+    if not models:
         raise openai_error(401, "Invalid API key", "authentication_failed", "invalid_api_key")
-    return [model]
+    return list(models)
 
 
 def authenticate_for_chat(authorization: Optional[str], model_name: str) -> dict:

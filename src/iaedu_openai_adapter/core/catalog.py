@@ -74,7 +74,10 @@ def load_model_catalog() -> dict[str, dict]:
 
 
 MODEL_CATALOG = load_model_catalog()
-LOCAL_KEY_INDEX: dict[str, dict] = {
-    cfg["api_key_local"]: cfg for cfg in MODEL_CATALOG.values()
-}
+# A single local API key may grant access to more than one model (see the
+# README example catalog), so index every key to all of its authorized models
+# instead of silently keeping only the last one.
+LOCAL_KEY_INDEX: dict[str, list[dict]] = {}
+for cfg in MODEL_CATALOG.values():
+    LOCAL_KEY_INDEX.setdefault(cfg["api_key_local"], []).append(cfg)
 log.info("✅ Models loaded (%s): %s", len(MODEL_CATALOG), list(MODEL_CATALOG.keys()))
